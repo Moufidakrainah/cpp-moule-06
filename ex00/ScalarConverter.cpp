@@ -61,16 +61,17 @@ static bool isDoubleLiteral(const std::string &s) {
 }
 
 void ScalarConverter::convert(const std::string &literal) {
+    /* affichage d' un seul chiffre apres le point pour les floats et doubles*/
     std::cout.setf(std::ios::fixed);
     std::cout.precision(1);
 
     // === CHAR ===
     if (isCharLiteral(literal)) {
         char c = literal[0];
-        std::cout << "char: '" << c << "'\n";
-        std::cout << "int: " << static_cast<int>(c) << "\n";
-        std::cout << "float: " << static_cast<float>(c) << "f\n";
-        std::cout << "double: " << static_cast<double>(c) << "\n";
+        std::cout << "char   : '" << c << "'\n";
+        std::cout << "int    : " << static_cast<int>(c) << "\n";
+        std::cout << "float  : " << static_cast<float>(c) << "f\n";
+        std::cout << "double : " << static_cast<double>(c) << "\n";
         return;
     }
 
@@ -78,9 +79,9 @@ void ScalarConverter::convert(const std::string &literal) {
     if (isIntLiteral(literal)) {
         long num = std::strtol(literal.c_str(), NULL, 10);
         if (num < INT_MIN || num > INT_MAX) {
-            std::cout << "char: impossible\n";
-            std::cout << "int: overflow\n";
-            std::cout << "float: impossible\n";
+            std::cout << "char  : impossible\n";
+            std::cout << "int   : overflow\n";
+            std::cout << "float : impossible\n";
             std::cout << "double: impossible\n";
             return;
         }
