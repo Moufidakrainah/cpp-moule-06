@@ -5,6 +5,18 @@ exp : int a = 42; 42 est un litteral entier.
 Le programme doit determiner de quel type est cette valeur.*/
 
 #include "ScalarConverter.hpp"
+
+ScalarConverter::ScalarConverter(){}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &other){
+	(void)other;
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other){
+	(void)other;
+	return *this;
+}
+
  
 /* verifie si la chaine s a exactement un caractere et ce n est pas un chiffre*/
 static bool isCharLiteral(const std::string &s) {
@@ -101,7 +113,7 @@ void ScalarConverter::convert(const std::string &literal) {
         float f = std::strtof(literal.c_str(), NULL);
         if (std::isnan(f) || std::isinf(f)) {
             std::cout << "char: impossible\n";
-            std::cout << "int: impossible\n";
+            std::cout << "int : impossible\n";
         } else {
             if (std::isprint(static_cast<int>(f)))
                 std::cout << "char: '" << static_cast<char>(f) << "'\n";
@@ -109,7 +121,7 @@ void ScalarConverter::convert(const std::string &literal) {
                 std::cout << "char: Non displayable\n";
             std::cout << "int: " << static_cast<int>(f) << "\n";
         }
-        std::cout << "float: " << f << "f\n";
+        std::cout << "float : " << f << "f\n";
         std::cout << "double: " << static_cast<double>(f) << "\n";
         return;
     }
@@ -119,7 +131,7 @@ void ScalarConverter::convert(const std::string &literal) {
         double d = std::strtod(literal.c_str(), NULL);
         if (std::isnan(d) || std::isinf(d)) {
             std::cout << "char: impossible\n";
-            std::cout << "int: impossible\n";
+            std::cout << "int : impossible\n";
         } else {
             if (std::isprint(static_cast<int>(d)))
                 std::cout << "char: '" << static_cast<char>(d) << "'\n";
@@ -127,7 +139,7 @@ void ScalarConverter::convert(const std::string &literal) {
                 std::cout << "char: Non displayable\n";
             std::cout << "int: " << static_cast<int>(d) << "\n";
         }
-        std::cout << "float: " << static_cast<float>(d) << "f\n";
+        std::cout << "float : " << static_cast<float>(d) << "f\n";
         std::cout << "double: " << d << "\n";
         return;
     }

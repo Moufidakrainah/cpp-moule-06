@@ -12,8 +12,8 @@ class ScalarConverter {
 private:
     /*Constructeur privé pour empêcher l’instanciation*/
     ScalarConverter();
-    ScalarConverter(const ScalarConverter &);
-    ScalarConverter &operator=(const ScalarConverter &);
+    ScalarConverter(const ScalarConverter &other);
+    ScalarConverter &operator=(const ScalarConverter &other);
     ~ScalarConverter();
 
 public:
