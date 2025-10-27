@@ -1,14 +1,10 @@
-#include "Identify.hpp"
-#include <iostream>
+#include "Base.hpp"
 
 int main() {
     Base* obj = generate();
 
-    std::cout << "Identification via pointeur : ";
-    identify(obj);
-
-    std::cout << "Identification via référence : ";
-    identify(*obj);
+    identify(obj);   // identification via pointeur
+    identify(*obj);  // identification via référence
 
     delete obj;
     return 0;

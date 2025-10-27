@@ -1,22 +1,22 @@
-
+NAME = identify
 
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Identify.cpp 
-OBJ = $(SRC:.cpp=.o)
-EXEC = Identify
+SRCS = main.cpp Base.cpp
+OBJS = $(SRCS:.cpp=.o)
 
-all: $(EXEC)
+all: $(NAME)
 
-$(EXEC): $(OBJ)
-	$(CXX) $(CXXFLAGS) -no-pie -o $(EXEC) $(OBJ)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(EXEC)
+	rm -f $(NAME)
 
 re: fclean all
 
+.PHONY: all clean fclean re
