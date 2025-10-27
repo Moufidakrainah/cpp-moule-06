@@ -1,21 +1,18 @@
-/* la methode statique convert prendra en parametre 
-une chaine de caractere std::string contiendra 
-un litteral (valeurs directement ecrite dans code)
-exp : int a = 42; 42 est un litteral entier.
+/* la methode statique convert prendra en parametre une chaine de caractere std::string contiendra 
+un litteral (valeurs directement ecrite dans code) exp : int a = 42; 42 est un litteral entier.
 Le programme doit determiner de quel type est cette valeur.*/
 
 #include "ScalarConverter.hpp"
 
 ScalarConverter::ScalarConverter(){}
-
 ScalarConverter::ScalarConverter(const ScalarConverter &other){
 	(void)other;
 }
-
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other){
 	(void)other;
 	return *this;
 }
+ScalarConverter::~ScalarConverter() {}
 
  
 /* verifie si la chaine s a exactement un caractere et ce n est pas un chiffre*/
@@ -32,14 +29,10 @@ static bool isIntLiteral(const std::string &s) {
     }
     return true;
 }
-/* verifie si la chaine finit par un f, contient un point,
- et tous les auttres sont des chiffres "float standard"
- nan : not a number double (resultat d'operation infefinies)
- inf : infini double
- nanf: not a number float
- inff infini float
- dans notre exercice quand on passe nanf et inff  ScalarConverter
- la conversion en char et int est impossible*/
+/*  nan : not a number double (resultat d'operation indefinie)
+    inf : infini double
+    nanf: not a number float
+    inff infini float */
  
 static bool isFloatLiteral(const std::string &s) {
     if (s == "-inff" || s == "+inff" || s == "nanf")
@@ -77,7 +70,7 @@ void ScalarConverter::convert(const std::string &literal) {
     std::cout.setf(std::ios::fixed);
     std::cout.precision(1);
 
-    // === CHAR ===
+    /* char */
     if (isCharLiteral(literal)) {
         char c = literal[0];
         std::cout << "char   : '" << c << "'\n";
@@ -87,7 +80,7 @@ void ScalarConverter::convert(const std::string &literal) {
         return;
     }
 
-    // === INT ===
+    /* int */
     if (isIntLiteral(literal)) {
         long num = std::strtol(literal.c_str(), NULL, 10);
         if (num < INT_MIN || num > INT_MAX) {
@@ -108,7 +101,7 @@ void ScalarConverter::convert(const std::string &literal) {
         return;
     }
 
-    // === FLOAT ===
+    /* Float */
     if (isFloatLiteral(literal)) {
         float f = std::strtof(literal.c_str(), NULL);
         if (std::isnan(f) || std::isinf(f)) {
@@ -126,7 +119,7 @@ void ScalarConverter::convert(const std::string &literal) {
         return;
     }
 
-    // === DOUBLE ===
+    /* Double */
     if (isDoubleLiteral(literal)) {
         double d = std::strtod(literal.c_str(), NULL);
         if (std::isnan(d) || std::isinf(d)) {
@@ -144,6 +137,6 @@ void ScalarConverter::convert(const std::string &literal) {
         return;
     }
 
-    // === ERREUR ===
+    /* Erreur */
     std::cout << "Error: invalid literal\n";
 }

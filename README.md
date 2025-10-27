@@ -6,7 +6,7 @@ conversion entre type parents et enfants dans une hierarchie de classes.
 conversion explicite quand le copilateur ne le fait pas automatiquement.
 
 2- dynamic_cast : Utilise uniquement avec les pointeurs ou references sur des classes polymorphes ( c'est a dire avec au moins une methode virtual ).
-il permet de convertir en toute securite un pointeur vers une classe de base vers un pointeur versune classe derivees, en verifiant a l'execution que c'est valide.
+il permet de convertir en toute securite un pointeur vers une classe de base vers un pointeur vers une classe derivees, en verifiant a l'execution que c'est valide.
 exp:
 class Base { public: virtual ~Base() {} };
 class Derived : public Base {};
